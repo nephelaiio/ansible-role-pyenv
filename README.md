@@ -13,14 +13,15 @@ Please refer to the [defaults file](/defaults/main.yml) for an up to date list o
 Dependencies
 ------------
 
-By default this role does not depend on any external roles. If any such dependency is required please [add them](/meta/main.yml) according to [the documentation](http://docs.ansible.com/ansible/playbooks_roles.html#role-dependencies)
+* [nephelaiio.git](https://galaxy.ansible.com/nephelaiio/git)
+* [nephelaiio.devtools](https://galaxy.ansible.com/nephelaiio/devtools)
 
 Example Playbook
 ----------------
 
 - hosts: servers
   roles:
-     - { role: pyenv, pyenv_packages_state: latest }
+     - role: nephelaiio.pyenv
 
 
 Testing
@@ -34,8 +35,9 @@ Role is tested against the following distributions (docker images):
   * Debian Jessie
   * Arch Linux
 
-You can test the role directrly from sources using command ` moclecule test `
-Please review the [documentation](http://docs.ansible.com/ansible/galaxy.html#setup-travis-integrations) in order to add continuous integration for the role using [Travis CI](https://travis-ci.org). Role configuration is provided in the [Travis-CI configuration file](/travis.yml)
+You can test the role directly from sources using command ` molecule test `
+
+CI configuration is provided in the [Travis-CI configuration file](/travis.yml)
 
 License
 -------
