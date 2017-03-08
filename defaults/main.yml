@@ -1,0 +1,17 @@
+# vim: sw=2 ts=2 et :
+---
+pyenv_packages: []
+pyenv_packages_state: present
+pyenv_source_repo: https://github.com/pyenv/pyenv.git
+pyenv_source_version: master
+pyenv_conf_file: .bash_profile
+pyenv_path: .pyenv
+pyenv_plugin_path: "{{ pyenv_path}}/plugins"
+pyenv_users:
+  - "{{ ansible_user }}"
+pyenv_python_versions: []
+pyenv_plugins:
+  - name: "pyenv-virtualenv"
+    repo: "https://github.com/pyenv/pyenv-virtualenv.git"
+  - name: "pyenv-update"
+    repo: "https://github.com/pyenv/pyenv-update.git"

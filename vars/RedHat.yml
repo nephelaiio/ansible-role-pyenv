@@ -1,0 +1,10 @@
+# vim: sw=2 ts=2 et :
+---
+pyenv-packages:
+  - zlib-devel
+  - bzip2
+  - bzip2-devel
+  - readline-devel
+  - sqlite
+  - sqlite-devel
+  - openssl-devel

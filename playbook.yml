@@ -1,0 +1,23 @@
+# vim: ts=2 sw=2 et :
+---
+- hosts: all
+  pre_tasks:
+    - name: "updating arch keyring"
+      package:
+        name: archlinux-keyring
+        state: latest
+      when: ansible_os_family == 'Archlinux'
+      tags:
+        - skip_ansible_lint
+    - name: "installing testing packages"
+      action: package
+              name=which,wget
+              state=installed
+      when: ansible_os_family != 'Debian'
+    - name: "installing testing packages"
+      action: package
+              name=wget
+              state=installed
+      when: ansible_os_family == 'Debian'
+  roles:
+    - role: pyenv

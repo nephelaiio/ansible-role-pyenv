@@ -1,0 +1,15 @@
+# vim: sw=2 ts=2 et :
+---
+# Variable definitions and overrides for Debian
+pyenv_packages:
+  - libssl-dev
+  - zlib1g-dev
+  - libbz2-dev
+  - libreadline-dev
+  - libsqlite3-dev
+  - libncurses5-dev
+  - libncursesw5-dev
+  - wget
+  - curl
+  - llvm
+  - xz-utils

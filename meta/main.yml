@@ -1,0 +1,30 @@
+# vim: ts=2 sw=2 et :
+---
+galaxy_info:
+  author: Ted Cook
+  description: An Ansible role to install and configure pyenv
+  license: MIT
+
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Archlinux
+    versions:
+      - all
+  - name: Ubuntu
+    versions:
+    - xenial
+  - name: Debian
+    versions:
+    - jessie
+
+  galaxy_tags:
+    - pyenv
+
+dependencies:
+  - role: nephelaiio.git
+  - role: nephelaiio.devtools
