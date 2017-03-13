@@ -88,7 +88,20 @@
     - "pyenv"
     - "pyenv_conf"
 
-- name: pyenv install ruby version
+    ~/.pyenv/plugins/pyenv-virtualenv/bin/pyenv-virtualenv-init
+
+- name: pyenv-virtualenv init
+  lineinfile:
+    dest: "~{{ item }}/{{ pyenv_conf_file }}"
+    line: "eval \"$($PYENV_ROOT/bin/pyenv virtualenv-init -)\""
+    create: yes
+  become: no
+  with_items: "{{ pyenv_users }}"
+  tags:
+    - "pyenv"
+    - "pyenv_conf"
+
+- name: pyenv install python version
   shell: >
     ~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item[1] }})
     creates="~/{{ pyenv_path }}/versions/{{ item[1] }}"
