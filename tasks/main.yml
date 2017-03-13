@@ -88,8 +88,6 @@
     - "pyenv"
     - "pyenv_conf"
 
-    ~/.pyenv/plugins/pyenv-virtualenv/bin/pyenv-virtualenv-init
-
 - name: pyenv-virtualenv init
   lineinfile:
     dest: "~{{ item }}/{{ pyenv_conf_file }}"
