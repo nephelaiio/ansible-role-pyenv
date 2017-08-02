@@ -7,8 +7,6 @@ pyenv_source_version: master
 pyenv_conf_file: .bash_profile
 pyenv_path: .pyenv
 pyenv_plugin_path: "{{ pyenv_path}}/plugins"
-pyenv_users:
-  - "{{ ansible_user }}"
 pyenv_python_versions: []
 pyenv_plugins:
   - name: "pyenv-virtualenv"

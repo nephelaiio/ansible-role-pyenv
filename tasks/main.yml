@@ -24,65 +24,53 @@
 - name: Install pyenv sources
   git:
     repo: "{{ pyenv_source_repo }}"
-    dest: "~{{ item }}/{{ pyenv_path }}"
+    dest: "~/{{ pyenv_path }}"
     version: "{{ pyenv_source_version }}"
-  become: no
-  with_items: "{{ pyenv_users }}"
   tags:
     - pyenv
 
 # Set up configuration file
 - name: configure pyenv path
   lineinfile:
-    dest: "~{{ item }}/{{ pyenv_conf_file }}"
+    dest: "~/{{ pyenv_conf_file }}"
     line: 'export PYENV_ROOT="$HOME/{{ pyenv_path }}"'
     create: yes
-  become: no
-  with_items: "{{ pyenv_users }}"
   tags:
     - "pyenv"
     - "pyenv_conf"
 
 - name: configure pyenv bin
   lineinfile:
-    dest: "~{{ item }}/{{ pyenv_conf_file }}"
+    dest: "~/{{ pyenv_conf_file }}"
     line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
     create: yes
-  become: no
-  with_items: "{{ pyenv_users }}"
   tags:
     - "pyenv"
     - "pyenv_conf"
 
 - name: pyenv init
   lineinfile:
-    dest: "~{{ item }}/{{ pyenv_conf_file }}"
+    dest: "~/{{ pyenv_conf_file }}"
     line: "[[ -f $PYENV_ROOT/bin/pyenv ]] && eval \"$($PYENV_ROOT/bin/pyenv init -)\""
     create: yes
-  become: no
-  with_items: "{{ pyenv_users }}"
   tags:
     - "pyenv"
     - "pyenv_conf"
 
 - name: pyenv plugin directory
   file:
-    dest: "~{{ item }}/{{ pyenv_plugin_path }}"
+    dest: "~{/{{ pyenv_plugin_path }}"
     state: directory
-  become: no
-  with_items: "{{ pyenv_users }}"
   tags:
     - "pyenv"
     - "pyenv_conf"
 
 - name: pyenv plugins
   git:
-    repo: "{{ item[1]['repo'] }}"
-    dest: "~{{ item[0] }}/{{ pyenv_plugin_path }}/{{ item[1]['name'] }}"
-    version: "{{ item[1]['version'] | default('master') }}"
-  become: no
-  with_nested:
-    - "{{ pyenv_users }}"
+    repo: "{{ item['repo'] }}"
+    dest: "~/{{ pyenv_plugin_path }}/{{ item['name'] }}"
+    version: "{{ item['version'] | default('master') }}"
+  with_items:
     - "{{ pyenv_plugins }}"
   tags:
     - "pyenv"
@@ -90,21 +78,16 @@
 
 - name: pyenv-virtualenv init
   lineinfile:
-    dest: "~{{ item }}/{{ pyenv_conf_file }}"
+    dest: "~/{{ pyenv_conf_file }}"
     line: "eval \"$($PYENV_ROOT/bin/pyenv virtualenv-init -)\""
     create: yes
-  become: no
-  with_items: "{{ pyenv_users }}"
   tags:
     - "pyenv"
     - "pyenv_conf"
 
 - name: pyenv install python version
   shell: >
-    ~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item[1] }})
-    creates="~/{{ pyenv_path }}/versions/{{ item[1] }}"
-  become: yes
-  become_user: "{{ item[0] }}"
-  with_nested:
-    - "{{ pyenv_users }}"
+    ~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item }})
+    creates="~/{{ pyenv_path }}/versions/{{ item }}"
+  with_items:
     - "{{ pyenv_python_versions }}"
