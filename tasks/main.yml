@@ -86,8 +86,8 @@
     - "pyenv_conf"
 
 - name: pyenv install python version
-  shell: >
-    ~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item }})
-    creates="~/{{ pyenv_path }}/versions/{{ item }}"
+  shell: "~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item }})"
+  args:
+    creates: "~/{{ pyenv_path }}/versions/{{ item }}"
   with_items:
     - "{{ pyenv_python_versions }}"
