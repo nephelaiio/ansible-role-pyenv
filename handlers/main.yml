@@ -1,8 +1,0 @@
-# vim: sw=2 ts=2 et :
----
-# handlers file for pyenv
-- name: restart pyenv services
-  service:
-    name=pyenv_service_name
-    state=restarted
-  become: yes
