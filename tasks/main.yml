@@ -55,7 +55,7 @@
 
 - name: create plugin directory
   file:
-    dest: "~{/{{ pyenv_plugin_path }}"
+    dest: "~/{{ pyenv_plugin_path }}"
     state: directory
   tags:
     - "pyenv"
