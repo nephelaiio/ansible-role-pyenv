@@ -12,9 +12,11 @@ Please refer to the [defaults file](/defaults/main.yml) for an up to date list o
 
 ## Example Playbook
 
+```
 - hosts: servers
   roles:
      - role: nephelaiio.pyenv
+```
 
 ## Testing
 
