@@ -1,3 +1,5 @@
 ---
-- nephelaiio.git
-- nephelaiio.devtools
+- src: nephelaiio.git
+  version: 1.0.1
+- src: nephelaiio.devtools
+  version: 1.0.0
