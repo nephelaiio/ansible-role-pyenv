@@ -7,59 +7,41 @@
         - "vars/{{ ansible_distribution }}.yml"
         - "vars/{{ ansible_os_family }}.yml"
       skip: true
-  tags:
-    - pyenv
 
 - name: install packages
   package:
     name: "{{ pyenv_packages }}"
     state: "{{ pyenv_packages_state }}"
   become: yes
-  tags:
-    - pyenv
 
 - name: Install sources
   git:
     repo: "{{ pyenv_source_repo }}"
     dest: "~/{{ pyenv_path }}"
     version: "{{ pyenv_source_version }}"
-  tags:
-    - pyenv
 
 - name: configure path
   lineinfile:
     dest: "~/{{ pyenv_conf_file }}"
     line: 'export PYENV_ROOT="$HOME/{{ pyenv_path }}"'
     create: yes
-  tags:
-    - "pyenv"
-    - "pyenv_conf"
 
 - name: configure bin
   lineinfile:
     dest: "~/{{ pyenv_conf_file }}"
     line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
     create: yes
-  tags:
-    - "pyenv"
-    - "pyenv_conf"
 
 - name: configure init
   lineinfile:
     dest: "~/{{ pyenv_conf_file }}"
     line: "[[ -f $PYENV_ROOT/bin/pyenv ]] && eval \"$($PYENV_ROOT/bin/pyenv init -)\""
     create: yes
-  tags:
-    - "pyenv"
-    - "pyenv_conf"
 
 - name: create plugin directory
   file:
     dest: "~/{{ pyenv_plugin_path }}"
     state: directory
-  tags:
-    - "pyenv"
-    - "pyenv_conf"
 
 - name: install plugins
   git:
@@ -68,18 +50,12 @@
     version: "{{ item['version'] | default('master') }}"
   with_items:
     - "{{ pyenv_plugins }}"
-  tags:
-    - "pyenv"
-    - "pyenv_conf"
 
 - name: initialize virtualenv
   lineinfile:
     dest: "~/{{ pyenv_conf_file }}"
     line: "eval \"$($PYENV_ROOT/bin/pyenv virtualenv-init -)\""
     create: yes
-  tags:
-    - "pyenv"
-    - "pyenv_conf"
 
 - name: install python version
   shell: "~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item }})"
