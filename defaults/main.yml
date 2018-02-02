@@ -1,6 +1,5 @@
-# vim: sw=2 ts=2 et :
 ---
-pyenv_packages: []
+# pyenv_packages: []
 pyenv_packages_state: present
 pyenv_source_repo: https://github.com/pyenv/pyenv.git
 pyenv_source_version: master

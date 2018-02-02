@@ -1,6 +1,4 @@
-# vim: sw=2 ts=2 et :
 ---
-# Variable definitions and overrides for Debian
 pyenv_packages:
   - libssl-dev
   - zlib1g-dev
