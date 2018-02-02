@@ -1,5 +1,5 @@
 ---
-pyenv-packages:
+pyenv_packages:
   - zlib-devel
   - bzip2
   - bzip2-devel
