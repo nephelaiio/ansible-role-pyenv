@@ -13,7 +13,7 @@ platforms:
   - name: debian
     image: debian:stretch
   - name: arch
-    image: base/archlinux:latest
+    image: archlinux/base:latest
 provisioner:
   name: ansible
   lint:
