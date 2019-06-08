@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ubuntu
-    image: ubuntu:xenial
+  - name: bionic
+    image: ubuntu:bionic
     groups:
       - compile
 provisioner:
