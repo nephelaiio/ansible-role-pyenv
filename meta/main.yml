@@ -21,7 +21,5 @@ galaxy_info:
     - pyenv
 
 dependencies:
-  - role: nephelaiio.git
-    version: 2.0.0
   - role: nephelaiio.devtools
-    version: 2.1.2
+    version: 2.1.3
