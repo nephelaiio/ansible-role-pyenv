@@ -17,8 +17,7 @@ provisioner:
   inventory:
     group_vars:
       compile:
-        pyenv_python_versions:
-          3.6.0
+        pyenv_python_versions: 3.9.0
 scenario:
   name: compile
 verifier:
