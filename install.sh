@@ -25,6 +25,7 @@ function help {
 # parse options
 # see https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 POSITIONAL=()
+LOCAL=""
 while [[ $# -gt 0 ]]
 do
     key="$1"
