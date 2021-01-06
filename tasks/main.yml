@@ -24,7 +24,7 @@
   tags:
     - install
 
-- blocks:
+- block:
 
     - name: Install sources
       git:
