@@ -70,4 +70,4 @@
   shell: "~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item }})"
   args:
     creates: "~/{{ pyenv_path }}/versions/{{ item }}"
-  loop: "{{ [pyenv_python_versions] ] | flatten }}"
+  loop: "{{ [pyenv_python_versions] | flatten }}"
