@@ -20,17 +20,23 @@ function help {
     echo
     echo "OPTIONS:"
     echo "   [--local]"
+    echo "   [--skip-packages]"
 }
 
 # parse options
 # see https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 POSITIONAL=()
 LOCAL=""
+PKGS=$OK
 while [[ $# -gt 0 ]]
 do
     key="$1"
 
     case $key in
+        --skip-packages)
+            PKGS=$KO
+            shift
+            ;;
         --local)
             LOCAL=$OK
             shift # past argument
@@ -64,7 +70,9 @@ pushd $tmpdir/install
 if [ -f ../requirements.yml ]; then
     ansible-galaxy install -r ../requirements.yml --force
 fi
-ansible-playbook --become --connection=local -i inventory playbook.yml -t install
+if [ "${PKGS}" -eq "$OK" ]; then
+    ansible-playbook --become --connection=local -i inventory playbook.yml -t install
+fi
 ansible-playbook --connection=local -i inventory playbook.yml ${POSITIONAL[@]}
 popd
 
