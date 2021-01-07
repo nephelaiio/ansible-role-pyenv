@@ -73,7 +73,7 @@ fi
 if [ "${PKGS}" -eq "$OK" ]; then
     ansible-playbook --become --connection=local -i inventory playbook.yml -t install
 fi
-ansible-playbook --connection=local -i inventory playbook.yml ${POSITIONAL[@]}
+ansible-playbook --connection=local -i inventory playbook.yml ${POSITIONAL[@]} --skip-tags install
 popd
 
 # purge temp files
