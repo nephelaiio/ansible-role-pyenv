@@ -5,6 +5,7 @@
 
     pyenv_user_name: mike
     pyenv_user_pass: ChangeMe@2021
+    pyenv_user_version: 3.9.1
 
   tasks:
 
@@ -31,7 +32,7 @@
       become: yes
 
     - name: install pyenv
-      shell: "curl -s https://raw.githubusercontent.com/nephelaiio/ansible-role-pyenv/master/install.sh | bash -s -- --skip-packages -e pyenv_python_versions=3.9.1"
+      shell: "curl -s https://raw.githubusercontent.com/nephelaiio/ansible-role-pyenv/master/install.sh | bash -s -- --skip-packages -e pyenv_python_versions={{ pyenv_user_version }}"
       args:
         warn: false
       become: yes
