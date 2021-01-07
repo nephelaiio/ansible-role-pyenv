@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+
+  vars:
+
+    pyenv_user_name: mike
+    pyenv_user_pass: ChangeMe@2021
+
+  tasks:
+
+    - name: install packages
+      include_role:
+        name: nephelaiio.pyenv
+        apply:
+          become: yes
+          tags:
+            - install
+
+    - name: create test user
+      user:
+        name: "{{ pyenv_user_name }}"
+        shell: /bin/bash
+        password: "{{ pyenv_user_pass | password_hash('sha512') }}"
+      become: yes
+
+    - name: install remote execution environment for ansible
+      package:
+        name:
+          - acl
+          - ansible
+      become: yes
+
+    - name: install pyenv
+      shell: "curl -s https://raw.githubusercontent.com/nephelaiio/ansible-role-pyenv/master/install.sh | bash -s -- --skip-packages -e pyenv_python_versions=3.9.1"
+      args:
+        warn: false
+      become: yes
+      become_user: "{{ pyenv_user_name }}"
