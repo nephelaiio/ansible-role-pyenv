@@ -13,4 +13,4 @@
         name: "{{ item.name }}"
         state: absent
         force_kill: "{{ item.force_kill | default(True) }}"
-      with_items: "{{ molecule_yml.platforms }}"
+      loop: "{{ molecule_yml.platforms }}"

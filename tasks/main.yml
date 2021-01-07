@@ -58,8 +58,7 @@
     repo: "{{ item['repo'] }}"
     dest: "~/{{ pyenv_plugin_path }}/{{ item['name'] }}"
     version: "{{ item['version'] | default('master') }}"
-  with_items:
-    - "{{ pyenv_plugins }}"
+  loop: "{{ pyenv_plugins }}"
 
 - name: initialize virtualenv
   lineinfile:
@@ -71,4 +70,4 @@
   shell: "~/{{ pyenv_path }}/bin/pyenv install $(echo {{ item }})"
   args:
     creates: "~/{{ pyenv_path }}/versions/{{ item }}"
-  with_items: "[{{ pyenv_python_versions }}] | flatten"
+  loop: "{{ [pyenv_python_versions] ] | flatten }}"
