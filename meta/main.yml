@@ -21,5 +21,6 @@ galaxy_info:
     - pyenv
 
 dependencies:
+  - role: nephelaiio.plugins
   - role: nephelaiio.devtools
     when: false

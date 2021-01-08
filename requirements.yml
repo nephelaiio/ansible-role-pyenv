@@ -1,3 +1,4 @@
 ---
-- src: nephelaiio.git
-- src: nephelaiio.devtools
+- nephelaiio.plugins
+- nephelaiio.git
+- nephelaiio.devtools
