@@ -1,12 +1,14 @@
 ---
-- name: include variable overrides
-  include_vars: "{{ item }}"
+- name: set variable overrides
+  set_fact:
+    _pyenv_packages: "{{ pyenv_packages | default(pyenv_packages_default | sorted_get(overrides)) }}"
   vars:
-    include_files:
-      - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-      - "vars/{{ ansible_distribution }}.yml"
-      - "vars/{{ ansible_os_family }}.yml"
-  loop: "{{ q('first_found', include_files, errors='ignore') }}"
+    overrides:
+      - "{{ ansible_distribution | lower }}-{{ ansible_distribution_release | lower }}"
+      - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}"
+      - "{{ ansible_distribution | lower }}"
+      - "{{ ansible_os_family | lower }}"
+      - "default"
   tags:
     - always
 
@@ -15,12 +17,16 @@
     - name: install development tools
       include_role:
         name: nephelaiio.devtools
+        apply:
+          tags:
+            - install
 
     - name: install packages
       package:
-        name: "{{ pyenv_packages }}"
+        name: "{{ _pyenv_packages }}"
         state: "{{ pyenv_packages_state }}"
 
+  when: pyenv_packages_manage | bool
   tags:
     - install
 

@@ -1,6 +1,30 @@
 ---
-# pyenv_packages: []
+pyenv_packages_default:
+  archlinux:
+    - make
+  debian:
+    - libssl-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - libncurses5-dev
+    - libncursesw5-dev
+    - wget
+    - curl
+    - llvm
+    - xz-utils
+  redhat:
+    - zlib-devel
+    - bzip2
+    - bzip2-devel
+    - readline-devel
+    - sqlite
+    - sqlite-devel
+    - openssl-devel
+
 pyenv_packages_state: present
+pyenv_packages_manage: yes
 pyenv_source_repo: https://github.com/pyenv/pyenv.git
 pyenv_source_version: master
 pyenv_conf_file: .bash_profile
