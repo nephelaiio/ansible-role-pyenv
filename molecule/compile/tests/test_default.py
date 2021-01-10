@@ -7,7 +7,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_version(host):
-    versions = ['3.6.0']
+    versions = ['3.9.0']
     for version in versions:
         cmd_tpl = "/bin/bash -l -c \"pyenv versions | grep {}\""
         cmd = cmd_tpl.format(version)

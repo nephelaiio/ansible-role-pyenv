@@ -1,1 +1,4 @@
-../../requirements.yml
+---
+- nephelaiio.plugins
+- nephelaiio.git
+- nephelaiio.devtools

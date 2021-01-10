@@ -67,9 +67,7 @@ else
     cp -a . $tmpdir
 fi
 pushd $tmpdir/install
-if [ -f ../requirements.yml ]; then
-    ansible-galaxy install -r ../requirements.yml --force
-fi
+ansible-galaxy install nephelaiio.pyenv
 if [ "${PKGS}" -eq "$OK" ]; then
     ansible-playbook --become --connection=local -i inventory playbook.yml -t install
 fi
